@@ -11,6 +11,7 @@ class BaseModel:
                     continue
                 if '_at' in k:
                     self.__dict__[k] = datetime.fromisoformat(v)
+                    continue
                 self.__dict__[k] = v
         else:
             self.id = str(uuid.uuid4())
