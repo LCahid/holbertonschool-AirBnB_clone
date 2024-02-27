@@ -21,8 +21,8 @@ class FileStorage:
     def reload(self):
         objs = dict()
         try:
-            with open(self.__file_path) as f:
-                objs = json.load(f.read())
+            with open(self.__file_path, 'r') as f:
+                objs = json.load(f)
             self.__objects = {k: BaseModel(**v) for k, v in objs.items()}
         except FileNotFoundError as _:
             pass
