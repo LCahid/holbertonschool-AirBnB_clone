@@ -45,10 +45,8 @@ class HBNBCommand(cmd.Cmd):
             zor = args[0] + "." + args[1]
             if zor not in storage.all():
                 print("** no instance found **")
-                return
             else:
                 print(storage.all()[zor])
-                return
 
     def do_destroy(self, arg):
         args = arg.split()
