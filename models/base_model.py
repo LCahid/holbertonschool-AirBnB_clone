@@ -4,10 +4,11 @@ import uuid
 
 
 class BaseModel:
+    id = 0
     def __init__(self, *args, **kwargs):
-        if kwargs is not None:
+        if kwargs:
             for k, v in kwargs:
-                if k is '__class__':
+                if k == '__class__':
                     continue
                 if '_at' in k:
                     self.__dict__[k] = datetime.fromisoformat(v)
