@@ -23,5 +23,5 @@ class FileStorage:
             with open(self.__file_path, 'r') as f:
                 objs = json.load(f)
                 self.__objects = {k: BaseModel(**v) for k, v in objs.items()}
-        except FileNotFoundError as _:
-            pass
+        except Exception as e:
+            print(e)
