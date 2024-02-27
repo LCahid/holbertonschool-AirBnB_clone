@@ -36,7 +36,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif not args[0] == "BaseModel":
             print("** class name missing **")
-        elif not args[1]:
+        elif len(args) < 2:
             print("** instance id missing **")
         zor = args[0] + "." + args[1]
         if zor not in storage.all():
@@ -50,7 +50,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif not args[0] == "BaseModel":
             print("** class name missing **")
-        elif not args[1]:
+        elif len(args) < 2:
             print("** instance id missing **")
         zor = args[0] + "." + args[1]
         if zor not in storage.all():
