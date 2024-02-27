@@ -33,19 +33,17 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, arg):
         args = arg.split()
         if not args[0]:
-            print("** class name missing **")
-            return
+            return("** class name missing **")
         elif not args[0] == "BaseModel":
-            print("** class name missing **")
-            return
+            return("** class name missing **")
         elif len(args) < 2:
-            print("** instance id missing **")
-            return
-        zor = args[0] + "." + args[1]
-        if zor not in storage.all():
-            print("** no instance found **")
+            return("** instance id missing **")
         else:
-            print(storage.all()[zor])
+            zor = args[0] + "." + args[1]
+            if zor not in storage.all():
+                return("** no instance found **")
+            else:
+                return(storage.all()[zor])
 
     def do_destroy(self, arg):
         args = arg.split()
