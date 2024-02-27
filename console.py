@@ -34,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         if not args[0]:
             print("** class name missing **")
-        elif not arg[0] == "BaseModel":
+        elif not args[0] == "BaseModel":
             print("** class name missing **")
         elif not args[1]:
             print("** instance id missing **")
