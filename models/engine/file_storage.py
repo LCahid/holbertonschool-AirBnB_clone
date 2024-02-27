@@ -22,7 +22,7 @@ class FileStorage:
         objs = dict()
         try:
             with open(self.__file_path) as f:
-                objs = json.load(f)
+                objs = json.load(f.read())
             self.__objects = {k: BaseModel(**v) for k, v in objs.items()}
         except FileNotFoundError as _:
             pass
