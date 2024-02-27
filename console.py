@@ -66,6 +66,12 @@ class HBNBCommand(cmd.Cmd):
             else:
                 del storage.all()[zor]
                 storage.save()
+    def do_all(self, arg):
+        if arg and not arg == "BaseModel":
+            print("** class doesn't exist **")
+            return
+        else:
+            print(str(zor) for zor in storage.all().values())
 
 if __name__ == '__main__':
         HBNBCommand().cmdloop()
