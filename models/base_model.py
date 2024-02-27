@@ -4,20 +4,18 @@ import uuid
 
 
 class BaseModel:
-    id = 0
     def __init__(self, *args, **kwargs):
-        if kwargs:
-            for k, v in kwargs:
-                if k == '__class__':
-                    continue
-                if '_at' in k:
-                    self.__dict__[k] = datetime.fromisoformat(v)
-                    continue
-                self.__dict__[k] = v
-        else:
-            self.id = str(uuid.uuid4())
-            self.created_at = datetime.now()
-            self.updated_at = datetime.now()
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        for k, v in kwargs:
+            if k == '__class__':
+                continue
+            if '_at' in k:
+                self.__dict__[k] = datetime.fromisoformat(v)
+                continue
+            self.__dict__[k] = v
+
 
     def __str__(self):
         return f'[{type(self).__name__}] ({self.id}) {self.__dict__}'
