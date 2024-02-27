@@ -26,4 +26,4 @@ class FileStorage:
             objs = {k: BaseModel(**v) for k, v in objs.items()}
         except Exception as _:
             pass
-        return objs
+        self.__objects = objs
