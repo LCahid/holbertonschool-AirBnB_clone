@@ -32,7 +32,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         args = arg.split()
-        if not args[0]:
+        if not args:
             print("** class name missing **")
             return
         elif not args[0] == "BaseModel":
@@ -50,7 +50,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, arg):
         args = arg.split()
-        if not args[0]:
+        if not args:
             print("** class name missing **")
             return
         elif not args[0] == "BaseModel":
