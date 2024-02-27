@@ -11,7 +11,7 @@ class FileStorage:
         return self.__objects
 
     def new(self, obj):
-        self.__objects[type(obj).__name__ + obj.id] = obj
+        self.__objects[type(obj).__name__ + '.' + obj.id] = obj
 
     def save(self):
         objs = {k: v.to_dict() for k, v in self.__objects.items()}
@@ -23,5 +23,5 @@ class FileStorage:
             with open(self.__file_path, 'r') as f:
                 objs = json.load(f)
                 self.__objects = {k: BaseModel(**v) for k, v in objs.items()}
-        except Exception as e:
-            print(e)
+        except FileNotFoundError as _:
+            pass

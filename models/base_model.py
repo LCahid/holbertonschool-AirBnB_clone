@@ -17,7 +17,7 @@ class BaseModel:
                 self.__dict__[k] = datetime.fromisoformat(v)
                 continue
             self.__dict__[k] = v
-        models.storage.new(self)
+        storage.new(self)
 
     def __str__(self):
         return f'[{type(self).__name__}] ({self.id}) {self.__dict__}'
@@ -25,7 +25,7 @@ class BaseModel:
     def save(self):
         from models import storage
         self.updated_at = datetime.now()
-        models.storage.save()
+        storage.save()
 
     def to_dict(self):
         ndict = self.__dict__.copy()
