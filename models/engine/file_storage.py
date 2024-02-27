@@ -22,7 +22,7 @@ class FileStorage:
         objs = dict()
         try:
             with open(self.__file_path) as f:
-                objs = json.loads(f.read())
+                objs = json.load(f.read())
             objs = {k: BaseModel(**v) for k, v in objs.items()}
         except Exception as _:
             pass
