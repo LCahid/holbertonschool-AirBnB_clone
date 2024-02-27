@@ -75,11 +75,11 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         args = arg.split()
-        if not args[0]:
+        if not args:
             print("** class name missing **")
             return
         elif not args[0] == "BaseModel":
-            print("** class name missing **")
+            print("** class doesn't exist **")
             return
         elif len(args) < 2:
             print("** instance id missing **")
