@@ -103,9 +103,8 @@ class HBNBCommand(cmd.Cmd):
                         try:
                             value = float(args[3])
                         except ValueError:
-                            value = str(value[1:-1])
                             pass
-                    setattr(zorobject, args[2], value)
+                    setattr(zorobject, args[2], str(value[1:-1]))
                     zorobject.save()
 
 if __name__ == '__main__':
