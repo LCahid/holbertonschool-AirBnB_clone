@@ -52,6 +52,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif len(args) < 2:
             print("** instance id missing **")
+            return
         zor = args[0] + "." + args[1]
         if zor not in storage.all():
             print("** no instance found **")
