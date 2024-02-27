@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 '''Something usful'''
 import cmd
+from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -23,6 +24,10 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif not arg == "BaseModel":
             print("** class doesn't exist **")
+        else:
+            new = BaseModel()
+            new.save()
+            print(new.id)
 
 if __name__ == '__main__':
         HBNBCommand().cmdloop()
