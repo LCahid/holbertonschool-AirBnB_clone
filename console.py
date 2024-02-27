@@ -38,10 +38,11 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif not args[1]:
             print("** instance id missing **")
-        elif not args[1] == args[0].id:
+        zor = args[0] + "." + args[1]
+        elif zor not in storage.all():
             print("** no instance found **")
         else:
-            print(storage.all())
+            print(storage.all()[zor])
 
 if __name__ == '__main__':
         HBNBCommand().cmdloop()
