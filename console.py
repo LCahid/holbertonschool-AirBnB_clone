@@ -99,13 +99,15 @@ class HBNBCommand(cmd.Cmd):
                     zorobject = storage.all()[zorkey]
                     try:
                         value = float(args[3])
+                        setattr(zorobject, args[2], value)
                     except ValueError:
                         pass
                     try:
                         value = int(args[3])
+                        setattr(zorobject, args[2], value)
                     except ValueError:
                         pass
-                    setattr(zorobject, args[2], value)
+                    setattr(zorobject, args[2], str(value[1:-1]))
                     zorobject.save()
 
 if __name__ == '__main__':
