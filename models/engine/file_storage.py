@@ -19,10 +19,9 @@ class FileStorage:
             f.write(json.dumps(objs))
 
     def reload(self):
-        objs = dict()
         try:
             with open(self.__file_path, 'r') as f:
                 objs = json.load(f)
-            self.__objects = {k: BaseModel(**v) for k, v in objs.items()}
+                self.__objects = {k: BaseModel(**v) for k, v in objs.items()}
         except FileNotFoundError as _:
             pass
