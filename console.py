@@ -58,12 +58,13 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) < 2:
             print("** instance id missing **")
             return
-        zor = args[0] + "." + args[1]
-        if zor not in storage.all():
-            print("** no instance found **")
         else:
-            del storage.all()[zor]
-            storage.save()
+            zor = args[0] + "." + args[1]
+            if zor not in storage.all():
+                print("** no instance found **")
+            else:
+                del storage.all()[zor]
+                storage.save()
 
 if __name__ == '__main__':
         HBNBCommand().cmdloop()
