@@ -36,7 +36,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         elif not args[0] == "BaseModel":
-            print("** class name missing **")
+            print("** class doesn't exist **")
             return
         elif len(args) < 2:
             print("** instance id missing **")
@@ -54,7 +54,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         elif not args[0] == "BaseModel":
-            print("** class name missing **")
+            print("** class doesn't exist **")
             return
         elif len(args) < 2:
             print("** instance id missing **")
