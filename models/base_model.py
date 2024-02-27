@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from datetime import datetime
 import uuid
+from . import storage
 
 
 class BaseModel:
@@ -15,13 +16,14 @@ class BaseModel:
                 self.__dict__[k] = datetime.fromisoformat(v)
                 continue
             self.__dict__[k] = v
-
+        storage.new(self)
 
     def __str__(self):
         return f'[{type(self).__name__}] ({self.id}) {self.__dict__}'
 
     def save(self):
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         ndict = self.__dict__.copy()
