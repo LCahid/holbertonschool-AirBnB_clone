@@ -73,5 +73,40 @@ class HBNBCommand(cmd.Cmd):
         else:
             print([str(zor) for zor in storage.all().values()])
 
+    def do_update(self, arg):
+        args = arg.split()
+        if not args[0]:
+            print("** class name missing **")
+            return
+        elif not args[0] == "BaseModel":
+            print("** class name missing **")
+            return
+        elif len(args) < 2:
+            print("** instance id missing **")
+            return
+        else:
+            zorkey = args[0] + "." + args[1]
+            if zorkey not in storage.all():
+                print("** no instance found **")
+            else:
+                if len(args) < 3:
+                    print("** attribute name missing **")
+                    return
+                elif len(args) < 4:
+                    print("** value missing **")
+                    return
+                else:
+                    zorobject = storage.all()[zorkey]
+                    try:
+                        value = float(args[3])
+                    except ValueError:
+                        pass
+                    try:
+                        value = int(args[3])
+                    except ValueError:
+                        pass
+                    setattr(zorobject, args[2], value)
+                    zorobject.save()
+
 if __name__ == '__main__':
         HBNBCommand().cmdloop()
