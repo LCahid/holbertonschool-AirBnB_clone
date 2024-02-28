@@ -5,17 +5,16 @@ from models import storage
 from models.base_model import BaseModel
 
 
+def isfloat(val):
+    try:
+        float(val)
+        return True
+    except ValueError:
+        return False
+
 class HBNBCommand(cmd.Cmd):
     '''Something more useful'''
     prompt = "(hbnb) "
-
-    @staticmethod
-    def isfloat(val):
-        try:
-            float(val)
-            return True
-        except ValueError:
-            return False
 
     def do_quit(self, arg):
         '''Quit command to exit the program'''
