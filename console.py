@@ -9,6 +9,7 @@ class HBNBCommand(cmd.Cmd):
     '''Something more useful'''
     prompt = "(hbnb) "
 
+    @staticmethod
     def isfloat(val):
         try:
             float(val)
