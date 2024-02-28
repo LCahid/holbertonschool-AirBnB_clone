@@ -106,7 +106,7 @@ class HBNBCommand(cmd.Cmd):
                     zorobject = storage.all()[zorkey]
                     if args[3].isdigit():
                         value = int(args[3])
-                    elif args[3].isfloat():
+                    elif isfloat(args[3]):
                         value = float(args[3])
                     else:
                         value = str(args[3])
