@@ -9,6 +9,13 @@ class HBNBCommand(cmd.Cmd):
     '''Something more useful'''
     prompt = "(hbnb) "
 
+    def isfloat(val):
+        try:
+            float(val)
+            return True
+        except ValueError:
+            return False
+
     def do_quit(self, arg):
         '''Quit command to exit the program'''
         exit()
@@ -99,12 +106,11 @@ class HBNBCommand(cmd.Cmd):
                     zorobject = storage.all()[zorkey]
                     if args[3].isdigit():
                         value = int(args[3])
+                    elif args[3].isfloat():
+                        value = float(args[3])
                     else:
-                        try:
-                            value = float(args[3])
-                        except ValueError:
-                            pass
-                    setattr(zorobject, args[2], str(value[1:-1]))
+                        value = str(args[3])
+                    setattr(zorobject, args[2], value)
                     zorobject.save()
 
 if __name__ == '__main__':
