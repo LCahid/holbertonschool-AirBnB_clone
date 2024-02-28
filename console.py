@@ -3,6 +3,7 @@
 import cmd
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
 
 
 def isfloat(val):
@@ -30,8 +31,12 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, arg):
         if not arg:
             print("** class name missing **")
-        elif not arg == "BaseModel":
+        elif not arg == "BaseModel" and not arg == 'User':
             print("** class doesn't exist **")
+        elif arg == 'User':
+            new = User()
+            new.save()
+            print(new.id)
         else:
             new = BaseModel()
             new.save()
@@ -42,7 +47,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        elif not args[0] == "BaseModel":
+        elif not args[0] == "BaseModel" and not args[0] == 'User':
             print("** class doesn't exist **")
             return
         elif len(args) < 2:
@@ -60,7 +65,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        elif not args[0] == "BaseModel":
+        elif not args[0] == "BaseModel" and not args[0] == 'User':
             print("** class doesn't exist **")
             return
         elif len(args) < 2:
@@ -74,7 +79,7 @@ class HBNBCommand(cmd.Cmd):
                 del storage.all()[zor]
                 storage.save()
     def do_all(self, arg):
-        if arg and not arg == "BaseModel":
+        if arg and not arg == "BaseModel" and not arg == 'User':
             print("** class doesn't exist **")
             return
         else:
@@ -85,7 +90,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        elif not args[0] == "BaseModel":
+        elif not args[0] == "BaseModel" and not args[0] == 'User':
             print("** class doesn't exist **")
             return
         elif len(args) < 2:
