@@ -6,6 +6,8 @@ from models.base_model import BaseModel
 from models.user import User
 
 
+classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
+
 def isfloat(val):
     try:
         float(val)
@@ -31,14 +33,10 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, arg):
         if not arg:
             print("** class name missing **")
-        elif not arg == "BaseModel" and not arg == 'User':
+        elif not arg in classes:
             print("** class doesn't exist **")
-        elif arg == 'User':
-            new = User()
-            new.save()
-            print(new.id)
         else:
-            new = BaseModel()
+            new = eval(arg)()
             new.save()
             print(new.id)
 
@@ -47,7 +45,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        elif not args[0] == "BaseModel" and not args[0] == 'User':
+        elif not args[0] in classes:
             print("** class doesn't exist **")
             return
         elif len(args) < 2:
@@ -65,7 +63,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        elif not args[0] == "BaseModel" and not args[0] == 'User':
+        elif not args[0] in classes:
             print("** class doesn't exist **")
             return
         elif len(args) < 2:
@@ -78,8 +76,9 @@ class HBNBCommand(cmd.Cmd):
             else:
                 del storage.all()[zor]
                 storage.save()
+
     def do_all(self, arg):
-        if arg and not arg == "BaseModel" and not arg == 'User':
+        if arg and not arg in classes:
             print("** class doesn't exist **")
             return
         else:
@@ -90,7 +89,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        elif not args[0] == "BaseModel" and not args[0] == 'User':
+        elif not args[0] in classes:
             print("** class doesn't exist **")
             return
         elif len(args) < 2:
