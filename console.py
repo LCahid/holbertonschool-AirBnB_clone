@@ -13,12 +13,14 @@ from models.review import Review
 
 classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
 
+
 def isfloat(val):
     try:
         float(val)
         return True
     except ValueError:
         return False
+
 
 class HBNBCommand(cmd.Cmd):
     '''Something more useful'''
@@ -38,7 +40,7 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, arg):
         if not arg:
             print("** class name missing **")
-        elif not arg in classes:
+        elif arg not in classes:
             print("** class doesn't exist **")
         else:
             new = eval(arg)()
@@ -83,7 +85,7 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
 
     def do_all(self, arg):
-        if arg and not arg in classes:
+        if arg and arg not in classes:
             print("** class doesn't exist **")
             return
         else:
@@ -122,5 +124,6 @@ class HBNBCommand(cmd.Cmd):
                     setattr(zorobject, args[2], value)
                     zorobject.save()
 
+
 if __name__ == '__main__':
-        HBNBCommand().cmdloop()
+    HBNBCommand().cmdloop()
