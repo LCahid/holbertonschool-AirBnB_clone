@@ -10,7 +10,7 @@ from models.base_model import BaseModel
 class TestBaseModel(unittest.TestCase):
     def setUp(self):
         try:
-            os.remove("file.json")
+            os.remove("gaga.json")
         except IOError:
             pass
 
@@ -35,7 +35,7 @@ class TestBaseModel(unittest.TestCase):
         myModel.name = "myModel"
         myModel.my_number = 89
         myModel.save()
-        self.assertTrue(os.path.exists("file.json"))
+        self.assertTrue(os.path.exists("gaga.json"))
         self.assertIn("BaseModel." + myModel.id, storage.all())
 
     def test_to_dict_method(self):

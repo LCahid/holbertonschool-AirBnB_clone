@@ -11,7 +11,7 @@ from models.engine.file_storage import FileStorage
 class TestFileStorage(unittest.TestCase):
     def setUp(self):
         try:
-            os.remove("file.json")
+            os.remove("gaga.json")
         except IOError:
             pass
 
@@ -23,10 +23,10 @@ class TestFileStorage(unittest.TestCase):
         obj3 = BaseModel()
 
         storage.save()
-        storage.objects = {}
+        FileStorage._FileStorage__objects.clear()
         storage.reload()
 
-        self.assertNotEqual(len(storage.objects), 0)
+        self.assertNotEqual(len(FileStorage._FileStorage__objects), 0)
 
     def test_storage_all(self):
         obj1 = BaseModel()
@@ -40,8 +40,8 @@ class TestFileStorage(unittest.TestCase):
         self.assertIn(obj2, all_objs.values())
 
     def test_check_type(self):
-        file_path = storage.file_path
-        objects = storage.objects
+        file_path = FileStorage._FileStorage__file_path
+        objects = FileStorage._FileStorage__objects
 
         self.assertIsInstance(file_path, str)
         self.assertIsInstance(objects, dict)
@@ -58,6 +58,6 @@ class TestFileStorage(unittest.TestCase):
         storage.new(obj1)
         storage.save()
 
-        with open("file.json", "r") as f:
+        with open("gaga.json", "r") as f:
             text = f.read()
             self.assertIn("BaseModel." + obj1.id, text)
